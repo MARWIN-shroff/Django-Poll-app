@@ -1,0 +1,7 @@
+admin:
+username:swapnil
+pass:swapnilop
+
+normal:
+user123
+Pass@123

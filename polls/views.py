@@ -191,9 +191,9 @@ def poll_detail(request, poll_id):
 def poll_vote(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
     choice_id = request.POST.get('choice')
-    if not poll.user_can_vote(request.user):
+    if poll.user_can_vote(request.user):
         messages.error(
-            request, "You already voted this poll!", extra_tags='alert alert-warning alert-dismissible fade show')
+            request, "You already voted this poll! vote was  "+str(poll.user_can_vote(request.user)), extra_tags='alert alert-warning alert-dismissible fade show')
         return redirect("polls:list")
 
     if choice_id:

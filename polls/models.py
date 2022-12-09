@@ -17,7 +17,9 @@ class Poll(models.Model):
         user_votes = user.vote_set.all()
         qs = user_votes.filter(poll=self)
         if qs.exists():
-            return False
+            qb = Vote.objects.filter(user=user, poll=self)
+            # print(qb[0].choice.choice_text)
+            return qb[0].choice.choice_text
         return True
 
     @property
